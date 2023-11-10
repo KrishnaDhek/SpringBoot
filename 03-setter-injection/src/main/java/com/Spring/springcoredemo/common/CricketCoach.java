@@ -1,4 +1,4 @@
-package com.Spring.springcoredemo;
+package com.Spring.springcoredemo.common;
 
 import org.springframework.stereotype.Component;
 //@Component annotation tells spring that this class should be treated as spring jean, and made

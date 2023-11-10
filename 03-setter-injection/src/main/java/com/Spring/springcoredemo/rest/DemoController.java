@@ -1,5 +1,6 @@
-package com.Spring.springcoredemo;
+package com.Spring.springcoredemo.rest;
 
+import com.Spring.springcoredemo.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,11 +10,16 @@ public class DemoController {
 
     //define a private field for the dependency
     private Coach mycoach;
+//
+//    //defined a constructor for dependency injection
+//    @Autowired//tells spring for dependency injection
+//    // if only one constructor then @Autowired is optional
+//    public DemoController(Coach theCoach){
+//        mycoach = theCoach;
+//    }
 
-    //defined a constructor for dependency injection
-    @Autowired//tells spring for dependency injection
-    // if only one constructor then @Autowired is optional
-    public DemoController(Coach theCoach){
+    @Autowired
+    public void setCoach(Coach theCoach){
         mycoach = theCoach;
     }
 
