@@ -19,7 +19,8 @@ public class DemoController {
 //    }
 
     @Autowired
-    public void setCoach(Coach theCoach){
+    public  DemoController(Coach theCoach){
+
         mycoach = theCoach;
     }
 
