@@ -3,6 +3,7 @@ package com.Spring.springcoredemo.rest;
 import com.Spring.springcoredemo.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,7 @@ public class DemoController {
 //    }
 
     @Autowired
-    public  DemoController(Coach theCoach){
+    public  DemoController(@Qualifier("cricketCoach") Coach theCoach){
         // Use @Qualifier to specify the desired bean when multiple implementations of Coach are present
         // In this case, "cricketCoach" is the bean name
 
