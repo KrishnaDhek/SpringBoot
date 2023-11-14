@@ -25,7 +25,7 @@ public class DemoController {
         // Use @Qualifier to specify the desired bean when multiple implementations of Coach are present
         // In this case, "cricketCoach" is the bean name
 
-
+        System.out.println("In constructor :"+getClass().getSimpleName());
         mycoach = theCoach;
     }
 
