@@ -3,6 +3,12 @@ package com.Spring.springcoredemo.common;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+/**
+ * This class represents a Track Coach bean.
+ * Marked with the @Component annotation to be detected by Spring component scanning.
+ * The @Lazy annotation is used to defer the creation of this bean until it is actually requested.
+ * This can improve startup time and resource usage, especially in scenarios where the bean may not be needed immediately.
+ */
 
 @Component
 @Lazy
