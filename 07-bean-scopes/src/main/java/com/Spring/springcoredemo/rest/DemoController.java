@@ -12,6 +12,7 @@ public class DemoController {
 
     //define a private field for the dependency
     private Coach mycoach;
+    private Coach anothercoach;
 //
 //    //defined a constructor for dependency injection
 //    @Autowired//tells spring for dependency injection
@@ -21,17 +22,26 @@ public class DemoController {
 //    }
 
     @Autowired
-    public  DemoController(@Qualifier("cricketCoach") Coach theCoach){
+    public  DemoController(@Qualifier("cricketCoach") Coach theCoach,
+                           @Qualifier("cricketCoach")Coach theanothercoach){
         // Use @Qualifier to specify the desired bean when multiple implementations of Coach are present
         // In this case, "cricketCoach" is the bean name
 
         System.out.println("In constructor :"+getClass().getSimpleName());
         mycoach = theCoach;
+        anothercoach = theanothercoach;
     }
 
     @GetMapping("/dailyworkout")
     public String getDailyWorkout(){
         return mycoach.getDailyWorkout();
+    }
+
+    //to check the scope of the bean, if the scope is singleton then it will return true else false
+    //singleton scope is the scope where both the bean myCoach and anotherCoach point to the same in stance
+    @GetMapping("/check")
+    public String check(){
+        return "Comparing beans : myCoach == anotherCoach, " +(mycoach==anothercoach);
     }
 
 }
