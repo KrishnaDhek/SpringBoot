@@ -21,27 +21,6 @@ public class CricketCoach implements Coach{
         System.out.println("In constructor :" +getClass().getSimpleName());
     }
 
-    //define our init method
-    /**
-     * Custom initialization method marked with @PostConstruct.
-     * This method will be invoked after the bean has been constructed.
-     * Prints a message during the startup phase.
-     */
-    @PostConstruct
-    public void doMyStartupStuff(){
-        System.out.println("In doMyStartupStuff :"+getClass().getSimpleName());
-    }
-
-    //define our destroy method
-    /**
-     * Custom cleanup method marked with @PreDestroy.
-     * This method will be invoked before the bean gets destroyed.
-     * Prints a message during the cleanup phase.
-     */
-    @PreDestroy
-    public void doMyCleanupStuff(){
-        System.out.println("In doMyCleanupStuff :"+getClass().getSimpleName());
-    }
     @Override
     public String getDailyWorkout() {
         return "Practice fast bowling for 15 minute";
