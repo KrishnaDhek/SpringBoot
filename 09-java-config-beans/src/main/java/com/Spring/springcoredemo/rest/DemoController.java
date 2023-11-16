@@ -22,7 +22,7 @@ public class DemoController {
 //    }
 
     @Autowired
-    public  DemoController(@Qualifier("cricketCoach") Coach theCoach){
+    public  DemoController(@Qualifier("swimCoach") Coach theCoach){
         // Use @Qualifier to specify the desired bean when multiple implementations of Coach are present
         // In this case, "cricketCoach" is the bean name
 
