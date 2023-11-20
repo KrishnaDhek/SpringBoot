@@ -14,8 +14,6 @@ public class StudentDAOImpl implements StudentDAO{
     private EntityManager entityManager;
 
     //inject entity manager using constructor injection
-
-
     @Autowired
     public StudentDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -30,6 +28,10 @@ public class StudentDAOImpl implements StudentDAO{
         entityManager.persist(theStudent);
     }
 
+    @Override
+    public Student findById(Integer id) {
+        return entityManager.find(Student.class, id);
+    }
 
 
 }
