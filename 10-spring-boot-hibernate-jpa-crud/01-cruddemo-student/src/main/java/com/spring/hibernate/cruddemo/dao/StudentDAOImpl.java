@@ -42,7 +42,7 @@ public class StudentDAOImpl implements StudentDAO{
 
         //create query
         //Student is JPA Entity(class name) *Not the name of database table
-        TypedQuery<Student> theQuery = entityManager.createQuery("From Student ", Student.class);
+        TypedQuery<Student> theQuery = entityManager.createQuery("From Student order by lastName desc", Student.class);
 
 
         //return query results
