@@ -116,7 +116,7 @@ public class CruddemoApplication {
 	private void createMultiStudent(StudentDAO studentDAO) {
 
 		//create 3 student objects
-		System.out.println("Creating 3 new student object ...");
+		System.out.println("Creating 5 new student object ...");
 		Student tempStudent1 =new Student("Paul","Doe", "paul@gmail.com");
 		Student tempStudent2 =new Student("Maul","Doe", "maul@gmail.com");
 		Student tempStudent3 =new Student("Kaul","Doe", "kaul@gmail.com");
