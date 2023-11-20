@@ -21,12 +21,32 @@ public class CruddemoApplication {
 	// CommandLineRunner bean to execute code when the application starts
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 	return runner->{
+
 //		createStudent(studentDAO);
 //		createMultiStudent(studentDAO);
 //		readStudent(studentDAO);
 //		queryForStudent(studentDAO);
-		queryForStudentByLastName(studentDAO);
+//		queryForStudentByLastName(studentDAO);
+		updateStudent(studentDAO);
 	};
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+
+		//retrieve students based on id: primary key
+		int studentID =2;
+		System.out.println("Getting student with id:" +studentID);
+		Student myStudent = studentDAO.findById(studentID);
+
+		//change first name to "Maul"
+		System.out.println("Updating student ...");
+		myStudent.setFirstName("Maul");
+
+		//update the student
+		studentDAO.update(myStudent);
+
+		//display the updated student
+		System.out.println("Updated student :"+myStudent);
 	}
 
 	private void queryForStudentByLastName(StudentDAO studentDAO) {
