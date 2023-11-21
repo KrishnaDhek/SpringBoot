@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -45,5 +46,17 @@ public class GlobalExceptionHandler {
         // Returning the error response with a 400 status
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
+
+    // Exception handler for MethodArgumentTypeMismatchException
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<String> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex) {
+        // Handle the exception for invalid path variable type
+
+        // Creating a response entity with a 400 (Bad Request) status
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body("Invalid Employee id format. Required an integer value");
+    }
+
 
 }
