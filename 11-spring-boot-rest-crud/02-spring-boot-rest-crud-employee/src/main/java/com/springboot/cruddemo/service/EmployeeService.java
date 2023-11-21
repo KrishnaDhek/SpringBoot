@@ -4,6 +4,9 @@ import com.springboot.cruddemo.entity.Employee;
 
 import java.util.List;
 
+// Service interface defining methods for employee-related business logic
 public interface EmployeeService {
+    // Method to retrieve all employees
+
     public List<Employee> findAll();
 }
