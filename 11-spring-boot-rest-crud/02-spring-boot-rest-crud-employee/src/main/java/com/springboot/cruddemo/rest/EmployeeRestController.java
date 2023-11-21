@@ -2,8 +2,9 @@ package com.springboot.cruddemo.rest;
 
 
 import com.springboot.cruddemo.entity.Employee;
+import com.springboot.cruddemo.exception.EmployeeInvalidException;
+import com.springboot.cruddemo.exception.EmployeeNotFoundException;
 import com.springboot.cruddemo.service.EmployeeService;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,17 +30,21 @@ public class EmployeeRestController {
 
     //add mapping for getting  employee via id
     @GetMapping("/employees/{employeeId}")
-    public Employee getEmployee(@PathVariable int employeeId ){
-
-        // Retrieve the employee from the service by ID
-        Employee theEmployee = employeeService.findById(employeeId);
-
-        // If the employee is not found, throw a runtime exception
-        if(theEmployee==null) {
-            throw new RuntimeException("Employee not found -" + employeeId);
+    public Employee getEmployee(@PathVariable String employeeId )  {
+        try {
+            int id = Integer.parseInt(employeeId);
+          Employee theEmployee = employeeService.findById(id);
+          if(theEmployee==null){
+              throw new EmployeeNotFoundException("Employee not found "+id);
+          }
+          return theEmployee;
         }
-        return theEmployee;
+        catch (NumberFormatException e){
+            throw new EmployeeInvalidException("Invalid employee id "+employeeId,e);
+        }
+
     }
+
 
     // Adding mapping to handle POST requests to add a new employee
     @PostMapping("/employees")
@@ -51,6 +56,13 @@ public class EmployeeRestController {
         Employee dbEmployee = employeeService.save(theEmployee);
 
         // Returning the saved employee with its assigned ID
+        return dbEmployee;
+    }
+
+    //Adding mapping for handling PUT request to update a new employee
+    @PutMapping("/employees")
+    public Employee updateEmployee(@RequestBody Employee theEmployee){
+        Employee dbEmployee = employeeService.save(theEmployee);
         return dbEmployee;
     }
 }
