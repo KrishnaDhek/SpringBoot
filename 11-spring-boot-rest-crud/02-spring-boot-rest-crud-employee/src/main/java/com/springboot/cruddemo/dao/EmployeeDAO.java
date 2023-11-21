@@ -11,7 +11,7 @@ public interface EmployeeDAO {
 
     Employee save(Employee theEmployee);
 
-    void delete(int theId);
+    void deleteById(int theId);
 
 
 }

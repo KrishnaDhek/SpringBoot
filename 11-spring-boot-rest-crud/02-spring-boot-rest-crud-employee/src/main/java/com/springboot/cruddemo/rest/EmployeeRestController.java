@@ -65,4 +65,22 @@ public class EmployeeRestController {
         Employee dbEmployee = employeeService.save(theEmployee);
         return dbEmployee;
     }
+
+    // Handles DELETE requests to delete an employee by ID
+    @DeleteMapping("/employees/{employeeId}")
+    public String deleteEmployee(@PathVariable int employeeId){
+
+        // Finding the employee by ID using the EmployeeService
+        Employee theEmployee = employeeService.findById(employeeId);
+
+        // If the employee is not found, throw an exception with a 404 status
+        if(theEmployee==null){
+                throw new EmployeeNotFoundException("Employee not found "+employeeId);
+            }
+
+        // Deleting the employee by ID using the service
+        employeeService.deleteById(employeeId);
+            return "Deleted Employee id "+employeeId;
+
+    }
 }
