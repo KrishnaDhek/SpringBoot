@@ -9,4 +9,10 @@ public interface EmployeeService {
     // Method to retrieve all employees
 
     public List<Employee> findAll();
+
+    Employee findById(int theId);
+
+    Employee save(Employee theEmployee);
+
+    void delete(int theId);
 }
