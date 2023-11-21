@@ -22,13 +22,13 @@ public class EmployeeRestController {
         employeeService = theEmployeeService;
     }
 
-    //expose endpoint "/employees" and return the list of employee
+    //`findAll`: Handles GET requests for retrieving all employees.
     @GetMapping("/employees")
     public List<Employee> findAll(){
        return employeeService.findAll();
     }
 
-    //add mapping for getting  employee via id
+    //getEmployee`: Handles GET requests for retrieving a specific employee by ID.
     @GetMapping("/employees/{employeeId}")
     public Employee getEmployee(@PathVariable String employeeId )  {
         try {
@@ -46,7 +46,7 @@ public class EmployeeRestController {
     }
 
 
-    // Adding mapping to handle POST requests to add a new employee
+    // addEmployee`: Handles POST requests for adding a new employee.
     @PostMapping("/employees")
     public Employee addEmployee(@RequestBody Employee theEmployee){
         // Setting ID to 0 to ensure it's treated as a new employee
@@ -59,7 +59,7 @@ public class EmployeeRestController {
         return dbEmployee;
     }
 
-    //Adding mapping for handling PUT request to update a new employee
+    //`updateEmployee`: Handles PUT requests for updating an existing employee.
     @PutMapping("/employees")
     public Employee updateEmployee(@RequestBody Employee theEmployee){
         Employee dbEmployee = employeeService.save(theEmployee);
