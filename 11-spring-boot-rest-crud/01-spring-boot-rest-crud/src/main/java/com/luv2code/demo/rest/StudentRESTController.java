@@ -71,4 +71,17 @@ public class StudentRESTController {
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 
     }
+
+    // Additional exception handler for handling non-integer path variable
+    @ExceptionHandler
+    public ResponseEntity<StudentErrorResponse> handleException(Exception exc){
+        StudentErrorResponse error = new StudentErrorResponse();
+        error.setStatus(HttpStatus.BAD_REQUEST.value());
+        error.setMessage("Required an integer value for studentId");
+        error.setTimeStamp(System.currentTimeMillis());
+
+        // Return ResponseEntity with the custom error response and 400 status
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+
+    }
 }
