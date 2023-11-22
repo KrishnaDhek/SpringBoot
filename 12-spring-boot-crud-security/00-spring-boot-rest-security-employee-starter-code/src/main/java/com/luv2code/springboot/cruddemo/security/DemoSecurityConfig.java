@@ -28,13 +28,29 @@ public class DemoSecurityConfig {
      * This bean is responsible for managing user details, such as loading user information
      * from a database using JDBC. It uses the provided DataSource for database connectivity.
      *
+     * Additionally, custom SQL queries are defined to retrieve user details and authorities
+     * (roles) from the database.
+     *
      * @param dataSource The DataSource bean for connecting to the database.
-     * @return UserDetailsManager bean configured to use JDBC for user authentication.
+     * @return UserDetailsManager bean configured to use JDBC for user authentication with custom SQL queries.
      */
 
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource){
-        return new JdbcUserDetailsManager(dataSource);
+
+        // Create a new instance of JdbcUserDetailsManager using the provided DataSource
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+
+        // Define a SQL query to retrieve a user by user_name from the 'members' table
+        jdbcUserDetailsManager.setUsersByUsernameQuery(
+            "select user_id, pw, active from members where user_id=?");
+
+        // Define a SQL query to retrieve the authorities/roles of the user_name from the 'roles' table
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
+                "select user_id, role from roles where user_id=?");
+
+        // Return the configured JdbcUserDetailsManager
+        return jdbcUserDetailsManager;
     }
 
     /**
