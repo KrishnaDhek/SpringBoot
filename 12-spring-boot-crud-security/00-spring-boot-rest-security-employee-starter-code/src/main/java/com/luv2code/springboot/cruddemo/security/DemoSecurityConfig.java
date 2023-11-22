@@ -6,10 +6,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 /**
  * Configuration class for defining security-related beans using Spring Security.
@@ -19,35 +20,21 @@ import org.springframework.security.web.SecurityFilterChain;
  */
 @Configuration
 public class DemoSecurityConfig {
+
+    //add support for JDBC
+    //no hard-coded users
     /**
-     * Creates an InMemoryUserDetailsManager bean with predefined users and roles.
+     * Creates a UserDetailsManager bean using JDBC for user authentication.
+     * This bean is responsible for managing user details, such as loading user information
+     * from a database using JDBC. It uses the provided DataSource for database connectivity.
      *
-     * @return InMemoryUserDetailsManager bean containing user details for authentication.
+     * @param dataSource The DataSource bean for connecting to the database.
+     * @return UserDetailsManager bean configured to use JDBC for user authentication.
      */
 
     @Bean
-    public InMemoryUserDetailsManager userDetailsManager(){
-
-        UserDetails john = User.builder()
-                .username("john")
-                .password("{noop}test123")// {noop} indicates plain text password
-                .roles("EMPLOYEE")
-                .build();
-
-        UserDetails mary = User.builder()
-                .username("mary")
-                .password("{noop}test123")
-                .roles("EMPLOYEE","MANAGER")
-                .build();
-
-        UserDetails susan = User.builder()
-                .username("susan")
-                .password("{noop}test123")
-                .roles("EMPLOYEE","MANAGER","ADMIN")
-                .build();
-
-        // Return the InMemoryUserDetailsManager bean with the defined users
-        return new InMemoryUserDetailsManager(john, mary, susan);
+    public UserDetailsManager userDetailsManager(DataSource dataSource){
+        return new JdbcUserDetailsManager(dataSource);
     }
 
     /**
@@ -76,4 +63,38 @@ public class DemoSecurityConfig {
        // Return the configured HttpSecurity as a SecurityFilterChain
        return http.build();
    }
+
+
+
+    /**
+     //     * Creates an InMemoryUserDetailsManager bean with predefined users and roles.
+     //     *
+     //     * @return InMemoryUserDetailsManager bean containing user details for authentication.
+     //     */
+
+//    @Bean
+//    public InMemoryUserDetailsManager userDetailsManager(){
+//
+//        UserDetails john = User.builder()
+//                .username("john")
+//                .password("{noop}test123")// {noop} indicates plain text password
+//                .roles("EMPLOYEE")
+//                .build();
+//
+//        UserDetails mary = User.builder()
+//                .username("mary")
+//                .password("{noop}test123")
+//                .roles("EMPLOYEE","MANAGER")
+//                .build();
+//
+//        UserDetails susan = User.builder()
+//                .username("susan")
+//                .password("{noop}test123")
+//                .roles("EMPLOYEE","MANAGER","ADMIN")
+//                .build();
+//
+//        // Return the InMemoryUserDetailsManager bean with the defined users
+//        return new InMemoryUserDetailsManager(john, mary, susan);
+//    }
+
 }
