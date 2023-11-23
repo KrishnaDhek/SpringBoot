@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <title>Hello Word - Input Form</title>
 </head>
-    <form th:action="@{/processForm}" method="GET">
-        <input type="text" name="studentName" placeholder="What's your name?"/>
-        <input type="submit" />
+<body>
 
-    </form>
+        <form th:action="@{/processFormVersionTwo}" method="GET">
+            <input type="text" name="studentName" placeholder="What's your name?"/>
+            <input type="submit" />
 
+        </form>
+
+</body>
 </html>
