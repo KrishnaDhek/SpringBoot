@@ -2,11 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Thymeleaf Demo</title>
+
+    <!--reference to CSS file-->
+    <link rel="stylesheet"
+            th:href="@{/css/demo.css}" />
 </head>
 
 <body>
 
-        <p th:text="'Time on server is ' + ${theDate}"/>
+        <p th:text="'Time on server is ' + ${theDate}" class="funny"/>
 
 </body>
 
