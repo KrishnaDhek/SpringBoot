@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Student {
 
+    // add fields
     private String firstName;
 
     private String lastName;
