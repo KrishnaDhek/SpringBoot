@@ -3,8 +3,9 @@ package com.springboot.thymeleafdemo.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -19,13 +20,13 @@ public class HelloWorldController {
 
     //need a controller method to process form
 
-    @GetMapping("/processForm")
+    @RequestMapping("/processForm")
     public String processForm(){
         return "helloworld";
     }
 
     //need a controller method to read form data
-    @GetMapping("/processFormVersionTwo")
+    @RequestMapping("/processFormVersionTwo")
     public String readData(HttpServletRequest request, Model model){
 
         //read request parameter from html form
@@ -42,7 +43,7 @@ public class HelloWorldController {
 
         return "helloworld";
     }
-    @GetMapping("/processFormVersionThree")
+    @PostMapping("/processFormVersionThree")
     public String processFormVersionThree(@RequestParam("studentName") String name, Model model){
 
 
