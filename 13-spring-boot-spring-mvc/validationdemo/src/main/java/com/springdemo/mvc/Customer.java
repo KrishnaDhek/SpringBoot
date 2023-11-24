@@ -15,6 +15,7 @@ public class Customer {
     @Size(min = 1,message = "is required")
     private String lastName="";
 
+    //validating number range
     @Min(value = 0, message = "must be greater than or equal to zero")
     @Max(value = 10, message = "must be less than or equal to zero")
     private int freePasses;
