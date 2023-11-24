@@ -1,8 +1,10 @@
 package com.springdemo.mvc;
 
+import com.springdemo.mvc.validation.CourseCode;
 import jakarta.validation.constraints.*;
 
 public class Customer {
+
 
     @NotNull(message = "is required")
     @Size(min = 1,message = "is required")
@@ -28,6 +30,17 @@ public class Customer {
 
     @Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "only 5chars/digits")
     private String postalCode;
+
+    @CourseCode(value = "QRS",message = "must start with QRS")
+    private String courseCode;
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
 
     public String getPostalCode() {
         return postalCode;
