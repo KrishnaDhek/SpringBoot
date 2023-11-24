@@ -13,10 +13,18 @@ public class Customer {
     private String lastName="";
 
     //validating number range
+    @NotNull(message = "is required")
     @Min(value = 0, message = "must be greater than or equal to zero")
     @Max(value = 10, message = "must be less than or equal to zero")
-    private int freePasses;
+    private Integer freePasses;
 
+    public Integer getFreePasses() {
+        return freePasses;
+    }
+
+    public void setFreePasses(Integer freePasses) {
+        this.freePasses = freePasses;
+    }
 
     @Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "only 5chars/digits")
     private String postalCode;
@@ -29,13 +37,7 @@ public class Customer {
         this.postalCode = postalCode;
     }
 
-    public int getFreePasses() {
-        return freePasses;
-    }
 
-    public void setFreePasses(int freePasses) {
-        this.freePasses = freePasses;
-    }
 
     public String getFirstName() {
         return firstName;
