@@ -7,17 +7,56 @@
 <body>
 <h3>Student Registration Form</h3>
 
+<!-- Student registration form with Thymeleaf attributes -->
 <form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
 
+    <!-- Input field for first name -->
         FirstName: <input type="text" th:field="*{firstName}"/>
 
 <br><br>
-
+    <!-- Input field for last name -->
         LastName: <input type="text" th:field="*{lastName}"/>
 
 <br><br>
+    <!-- Dropdown for selecting country -->
+    Country:
+        <select th:field="*{country}">
+            <option th:each="tempCountry :${countries}" th:value="${tempCountry}" th:text="${tempCountry}"></option>
+        </select>
 
-        <input type="submit" value="Submit"/>
+    <br><br>
+
+    <!-- Radio buttons for selecting gender -->
+    Gender:
+            <input type="radio" th:field="*{gender}"
+                                th:each="tempGender :${gender}"
+                                th:value="${tempGender}"
+                                th:text="${tempGender}"/>
+
+
+    <br><br>
+
+    <!-- Radio buttons for selecting programming language -->
+    Programming Language:
+        <input type="radio" th:field="*{language}"
+                            th:each="tempLanguage :${language}"
+                            th:value="${tempLanguage}"
+                            th:text="${tempLanguage}"/>
+
+
+    <br><br>
+
+    <!-- Checkboxes for selecting operating systems -->
+    Operating System:
+    <input type="checkbox" th:field="*{operatingSystem}"
+                        th:each="tempOperatingSystem :${operatingSystem}"
+                        th:value="${tempOperatingSystem}"
+                        th:text="${tempOperatingSystem}"/>
+
+    <br><br>
+
+    <!-- Submit button -->
+    <input type="submit" value="Submit"/>
 </form>
 </body>
 </html>
