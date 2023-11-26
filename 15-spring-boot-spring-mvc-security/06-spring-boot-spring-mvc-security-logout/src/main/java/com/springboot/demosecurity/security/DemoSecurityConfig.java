@@ -55,6 +55,9 @@ public class DemoSecurityConfig {
                                 // Allow all users to access the login page.
 
                                 .permitAll()
+                )
+                .logout(logout ->
+                        logout.permitAll()
                 );
 
         return http.build();
