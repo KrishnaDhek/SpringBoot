@@ -4,6 +4,7 @@ import com.springboot.cruddemo.dao.AppDAO;
 import com.springboot.cruddemo.entity.Course;
 import com.springboot.cruddemo.entity.Instructor;
 import com.springboot.cruddemo.entity.InstructorDetail;
+import com.springboot.cruddemo.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,23 +22,27 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner->{
+			createCourseAndReview(appDAO);
 
-			//	createInstructor(appDAO);
-			//	findInstructor(appDAO);
-			//	deleteInstructor(appDAO);
-			//	findInstructorDetail(appDAO);
-			//	deleteInstructorDetail(appDAO);
-
-			//createInstructorWithCourses(appDAO);
-			//findInstructorWithCourses(appDAO);
-			//findCoursesForInstructor(appDAO);
-			//findInstructorWithCoursesJoinFetch(appDAO);
-
-			//updateInstructor(appDAO);
-			//updateCourse(appDAO);
-			//deleteInstructor(appDAO);
-			deleteCourse(appDAO);
 		};
+	}
+
+	private void createCourseAndReview(AppDAO appDAO) {
+		//create a course
+		Course tempCourse = new Course("English from Beginner to Advance");
+
+		//create a review
+		tempCourse.addReview(new Review("Great Course"));
+		tempCourse.addReview(new Review("Helpful"));
+		tempCourse.addReview(new Review("The instructor is very helpful!!"));
+		tempCourse.addReview(new Review("Superb course for beginners"));
+
+
+		//save the course
+		System.out.println("Saving the course");
+		System.out.println(tempCourse);
+		System.out.println(tempCourse.getReviews());
+		appDAO.save(tempCourse);
 	}
 
 	private void deleteCourse(AppDAO appDAO) {
