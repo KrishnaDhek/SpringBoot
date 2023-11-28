@@ -29,10 +29,19 @@ public class Course {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     private List<Review> reviews;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
+            CascadeType.DETACH, CascadeType.MERGE})
+    @JoinTable(name = "course_student",
+            joinColumns= @JoinColumn(name="course_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id"))
+    private  List<Student> students;
+
     //define the constructor
     public Course(){
 
     }
+
 
     public Course(String title) {
         this.title = title;
@@ -41,6 +50,15 @@ public class Course {
 
     //define getter and setter
 
+
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
 
     public List<Review> getReviews() {
         return reviews;
@@ -93,5 +111,14 @@ public class Course {
             reviews = new ArrayList<>();
         }
         reviews.add(theReview);
+    }
+
+    //add convenience method
+
+    public void addStudent(Student theStudent){
+        if(students==null){
+            students = new ArrayList<>();
+        }
+        students.add(theStudent);
     }
 }
