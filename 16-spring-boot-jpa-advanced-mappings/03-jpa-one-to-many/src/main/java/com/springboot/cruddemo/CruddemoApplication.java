@@ -31,8 +31,40 @@ public class CruddemoApplication {
 			//createInstructorWithCourses(appDAO);
 			//findInstructorWithCourses(appDAO);
 			//findCoursesForInstructor(appDAO);
-			findInstructorWithCoursesJoinFetch(appDAO);
+			//findInstructorWithCoursesJoinFetch(appDAO);
+
+			//updateInstructor(appDAO);
+			updateCourse(appDAO);
 		};
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		int courseId =11;
+
+		System.out.println("Finding course id:" +courseId);
+		Course tempCourse = appDAO.findCourseById(courseId);
+		//update the course
+		System.out.println("Update the course title :" +courseId);
+		tempCourse.setTitle("Mastering SpringBoot");
+		appDAO.update(tempCourse);
+		System.out.println("Done!");
+	}
+
+	private void updateInstructor(AppDAO appDAO) {
+		int theId =1;
+
+		//find the instructor
+
+		System.out.println("Finding the instructor :" +theId);
+		Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+		//update the instructor
+		System.out.println("Update the instructor :"+theId);
+		tempInstructor.setLastName("TESTER");
+
+		appDAO.update(tempInstructor);
+		System.out.println("Done!");
+
 	}
 
 	private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
