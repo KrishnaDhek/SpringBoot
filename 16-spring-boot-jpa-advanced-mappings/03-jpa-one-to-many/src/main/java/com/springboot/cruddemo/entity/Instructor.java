@@ -30,7 +30,9 @@ public class Instructor {
 
     //FetchType.EAGER: Specifies eager loading, meaning that
     //when an Instructor is retrieved, its courses will be loaded immediately.
-    @OneToMany(mappedBy = "instructor", fetch = FetchType.EAGER,
+
+    //Fetch type in one-to-many is default to LAZY initialization
+    @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY,
             cascade=  {CascadeType.PERSIST, CascadeType.MERGE,
                        CascadeType.DETACH, CascadeType.REFRESH})
     private List<Course> courses;
