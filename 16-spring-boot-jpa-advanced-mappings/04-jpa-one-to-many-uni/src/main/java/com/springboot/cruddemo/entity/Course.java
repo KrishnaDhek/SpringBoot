@@ -2,6 +2,9 @@ package com.springboot.cruddemo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "course")
 public class Course {
@@ -22,6 +25,10 @@ public class Course {
     private Instructor instructor;
 
 
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    private List<Review> reviews;
     //define the constructor
     public Course(){
 
@@ -33,6 +40,15 @@ public class Course {
     }
 
     //define getter and setter
+
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public int getId() {
         return id;
@@ -68,5 +84,14 @@ public class Course {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 '}';
+    }
+
+    //add convenience method
+
+    public void addReview(Review theReview){
+        if(reviews==null){
+            reviews = new ArrayList<>();
+        }
+        reviews.add(theReview);
     }
 }
