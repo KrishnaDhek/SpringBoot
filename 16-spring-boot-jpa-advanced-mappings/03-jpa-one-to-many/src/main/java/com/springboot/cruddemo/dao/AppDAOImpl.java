@@ -3,6 +3,7 @@ package com.springboot.cruddemo.dao;
 import com.springboot.cruddemo.entity.Course;
 import com.springboot.cruddemo.entity.Instructor;
 import com.springboot.cruddemo.entity.InstructorDetail;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,6 +98,26 @@ public class AppDAOImpl implements AppDAO{
         Instructor instructor = query.getSingleResult();
         return instructor;
 
+    }
+
+    @Override
+    @Transactional
+    public void update(Instructor theInstructor) {
+        entityManager.merge(theInstructor);
+
+    }
+
+
+    //course update
+    @Override
+    @Transactional
+    public void update(Course theCourse) {
+        entityManager.merge(theCourse);
+    }
+
+    @Override
+    public Course findCourseById(int theID) {
+        return entityManager.find(Course.class, theID);
     }
 
 
