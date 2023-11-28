@@ -1,6 +1,7 @@
 package com.springboot.cruddemo.dao;
 
 import com.springboot.cruddemo.entity.Instructor;
+import com.springboot.cruddemo.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -39,6 +40,13 @@ public class AppDAOImpl implements AppDAO{
         entityManager.remove(tempInstructor);
 
     }
+
+    @Override
+    public InstructorDetail findInstructorDetailById(int theId) {
+        return  entityManager.find(InstructorDetail.class, theId);
+    }
+
+
 
 
 }
