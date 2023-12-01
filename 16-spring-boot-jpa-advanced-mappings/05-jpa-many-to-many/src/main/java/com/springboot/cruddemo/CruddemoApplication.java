@@ -19,6 +19,8 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner->{
+
+
 			//createCourseAndStudent(appDAO);
 //			findCourseAndStudent(appDAO);
 			//findStudentAndCourse(appDAO);
