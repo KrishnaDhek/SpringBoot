@@ -21,8 +21,8 @@ public class CruddemoApplication {
 		return runner->{
 
 
-			// createCourseAndStudent(appDAO);
-//			findCourseAndStudent(appDAO);
+			//createCourseAndStudent(appDAO);
+			//findCourseAndStudent(appDAO);
 			//findStudentAndCourse(appDAO);
 			//addMoreCoursesForStudent(appDAO);
 			//deleteCourse(appDAO);
