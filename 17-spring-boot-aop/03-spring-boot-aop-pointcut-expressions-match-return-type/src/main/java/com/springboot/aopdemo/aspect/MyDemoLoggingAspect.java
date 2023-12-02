@@ -1,4 +1,4 @@
-package com.springboot.aopdemo.aspect;
+`package com.springboot.aopdemo.aspect;
 
 
 import org.aspectj.lang.annotation.Aspect;
@@ -14,9 +14,11 @@ public class MyDemoLoggingAspect {
     //start with @Before advice
     //pointcut expression
     //Run this BEFORE - the target object method  addAccount()
-    @Before("execution(public void add*())")
+//    @Before("execution(public void add*())")
+    @Before("execution(* add*())")
     public void beforeAddAccount(){
         System.out.println("\n======>>> Executing @Before advice on method");
     }
 }
 
+`
