@@ -31,7 +31,7 @@ public class AopdemoApplication {
 		theAccountDAO.addAccount();
 
 		// Call the business method in MembershipDAO
-		theMembershipDAO.addAccount();
+		theMembershipDAO.addSillyAccount();
 
 	}
 }
