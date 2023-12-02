@@ -13,19 +13,24 @@ public class AopdemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AopdemoApplication.class, args);
 	}
+
+	// CommandLineRunner bean to execute code when the Spring application starts
 	@Bean
 	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
 		return  runner -> {
+			// Demo the @Before advice method
 			demoTheBeforeAdvice(theAccountDAO,theMembershipDAO);
 		};
 	}
 
+
+	// Method to demonstrate calling business methods and applying @Before advice
 	private void demoTheBeforeAdvice(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
 
-		//call the business method
+		// Call the business method in AccountDAO
 		theAccountDAO.addAccount();
 
-		//call the membership business method
+		// Call the business method in MembershipDAO
 		theMembershipDAO.addAccount();
 
 	}
