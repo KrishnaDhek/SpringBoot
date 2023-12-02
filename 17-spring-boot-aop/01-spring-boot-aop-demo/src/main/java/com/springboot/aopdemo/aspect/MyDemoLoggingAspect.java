@@ -18,6 +18,7 @@ public class MyDemoLoggingAspect {
     //Run this BEFORE - the target object method  addAccount()
     @Before("execution(public void addAccount())")
     public void beforeAddAccount(){
-        System.out.println("\n======>>> Executing @Before advice on method addAccount()");
+        System.out.println("\n======>>> Executing @Before advice on method");
     }
 }
+
