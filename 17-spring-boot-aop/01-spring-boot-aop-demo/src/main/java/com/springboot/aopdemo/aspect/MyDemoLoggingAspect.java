@@ -12,11 +12,9 @@ public class MyDemoLoggingAspect {
     //this is here we add all of our related advices for logging
 
     //start with @Before advice
-
-
     //pointcut expression
     //Run this BEFORE - the target object method  addAccount()
-    @Before("execution(public void addAccount())")
+    @Before("execution(public void com.springboot.aopdemo.dao.AccountDAO.addAccount())")
     public void beforeAddAccount(){
         System.out.println("\n======>>> Executing @Before advice on method");
     }
