@@ -11,11 +11,15 @@ import org.springframework.stereotype.Component;
 public class MyDemoLoggingAspect {
     //this is here we add all of our related advices for logging
 
-    //start with @Before advice
-    //pointcut expression
-    //Run this BEFORE - the target object method  addAccount()
-//    @Before("execution(public void add*())")
-    @Before("execution(* add*(..))")
+
+
+    // Pointcut expression for @Before advice
+    // Match any method in classes within the com.springboot.aopdemo.dao package and its subpackages
+    // The '*' before 'com' indicates any return type
+    // The '..' after 'dao' indicates any number of subpackages
+    // The '*' before '*' indicates any method name
+    // The '(..)' indicates any number of parameters
+    @Before("execution(* com.springboot.aopdemo.dao..*(..))")
     public void beforeAddAccount(){
         System.out.println("\n======>>> Executing @Before advice on method");
     }
