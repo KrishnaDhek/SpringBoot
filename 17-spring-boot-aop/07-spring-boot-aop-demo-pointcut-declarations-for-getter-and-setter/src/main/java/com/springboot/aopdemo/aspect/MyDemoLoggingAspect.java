@@ -21,18 +21,29 @@ public class MyDemoLoggingAspect {
     // The '*' before '*' indicates any method name
     // The '(..)' indicates any number of parameters
 
-    @Pointcut("execution(* com.springboot.aopdemo.dao..*(..))")
-    private void forDAOPackage(){
-        // This is a named pointcut, and it doesn't contain any executable code
-        // Its purpose is to encapsulate the pointcut expression for reuse
+    @Pointcut("execution(* com.springboot.aopdemo.dao.*.*(..))")
+    private void forDAOPackage(){ }
 
-    }
-    @Before("forDAOPackage()")
+    //create pointcut for getter method
+    @Pointcut("execution(* com.springboot.aopdemo.dao.*.get*(..))")
+    private void getter(){ }
+
+
+    //create pointcut for setter method
+    @Pointcut("execution(* com.springboot.aopdemo.dao.*.set*(..))")
+    private void setter(){ }
+
+    //create pointcut: include package.. exclude getter/setter
+    @Pointcut("forDAOPackage() && !getter() !setter()")
+    private void forDAOPackageNoGetterSetter(){ }
+
+
+    @Before("forDAOPackageNoGetterSetter()")
     public void beforeAddAccount(){
         System.out.println("\n======>>> Executing @Before advice on method");
     }
 
-    @Before("forDAOPackage()")
+    @Before("forDAOPackageNoGetterSetter()")
     public void performApiAnalytics(){
         System.out.println("\n========>>>> Performing API Analytics");
     }
