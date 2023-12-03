@@ -3,6 +3,7 @@ package com.springboot.aopdemo.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 // An Aspect class to encapsulate cross-cutting concerns like logging
@@ -19,7 +20,14 @@ public class MyDemoLoggingAspect {
     // The '..' after 'dao' indicates any number of subpackages
     // The '*' before '*' indicates any method name
     // The '(..)' indicates any number of parameters
-    @Before("execution(* com.springboot.aopdemo.dao..*(..))")
+
+    @Pointcut("execution(* com.springboot.aopdemo.dao..*(..))")
+    private void forDAOPackage(){
+        // This is a named pointcut, and it doesn't contain any executable code
+        // Its purpose is to encapsulate the pointcut expression for reuse
+
+    }
+    @Before("forDAOPackage()")
     public void beforeAddAccount(){
         System.out.println("\n======>>> Executing @Before advice on method");
     }
