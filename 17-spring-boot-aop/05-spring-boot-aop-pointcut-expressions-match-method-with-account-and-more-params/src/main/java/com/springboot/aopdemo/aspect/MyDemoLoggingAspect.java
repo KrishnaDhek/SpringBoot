@@ -15,7 +15,7 @@ public class MyDemoLoggingAspect {
     //pointcut expression
     //Run this BEFORE - the target object method  addAccount()
 //    @Before("execution(public void add*())")
-    @Before("execution(* add*(com.springboot.aopdemo.Account,..))")
+    @Before("execution(* add*(..))")
     public void beforeAddAccount(){
         System.out.println("\n======>>> Executing @Before advice on method");
     }
