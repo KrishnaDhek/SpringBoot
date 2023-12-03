@@ -4,5 +4,5 @@ import com.springboot.aopdemo.Account;
 
 public interface AccountDAO {
 
-    void addAccount(Account theAccount);
+    void addAccount(Account theAccount,boolean vipFlag);
 }
