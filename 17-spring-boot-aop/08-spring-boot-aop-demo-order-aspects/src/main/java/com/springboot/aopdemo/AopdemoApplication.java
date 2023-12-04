@@ -1,5 +1,6 @@
 package com.springboot.aopdemo;
 
+
 import com.springboot.aopdemo.dao.AccountDAO;
 import com.springboot.aopdemo.dao.MembershipDAO;
 import org.springframework.boot.CommandLineRunner;
@@ -14,34 +15,33 @@ public class AopdemoApplication {
 		SpringApplication.run(AopdemoApplication.class, args);
 	}
 
-	// CommandLineRunner bean to execute code when the Spring application starts
 	@Bean
 	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
-		return  runner -> {
-			// Demo the @Before advice method
-			demoTheBeforeAdvice(theAccountDAO,theMembershipDAO);
+
+		return runner -> {
+
+			demoTheBeforeAdvice(theAccountDAO, theMembershipDAO);
 		};
 	}
 
-
-	// Method to demonstrate calling business methods and applying @Before advice
 	private void demoTheBeforeAdvice(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
 
-		// Call the business method in AccountDAO
+		// call the business method
 		Account myAccount = new Account();
 		theAccountDAO.addAccount(myAccount, true);
 		theAccountDAO.doWork();
 
-		//call accountdao to getter/setter method
-		theAccountDAO.setName("Purple");
-		theAccountDAO.setServiceCode("black");
+		// call the accountdao getter/setter methods
+		theAccountDAO.setName("foobar");
+		theAccountDAO.setServiceCode("silver");
 
-		String name =theAccountDAO.getName();
-		String code =theAccountDAO.getServiceCode();
+		String name = theAccountDAO.getName();
+		String code = theAccountDAO.getServiceCode();
 
-		// Call the business method in MembershipDAO
-		theMembershipDAO.addSillyAccount();
+		// call the membership business method
+		theMembershipDAO.addSillyMember();
 		theMembershipDAO.goToSleep();
 
 	}
+
 }

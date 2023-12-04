@@ -1,41 +1,46 @@
 package com.springboot.aopdemo.dao;
 
+
 import com.springboot.aopdemo.Account;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class AccountDAOImpl implements AccountDAO{
+public class AccountDAOImpl implements AccountDAO {
 
     private String name;
     private String serviceCode;
+
     @Override
     public void addAccount(Account theAccount, boolean vipFlag) {
-        System.out.println(getClass() +": Doing my DB work: Adding an account");
+
+        System.out.println(getClass() + ": DOING MY DB WORK: ADDING AN ACCOUNT");
+
     }
 
     @Override
     public boolean doWork() {
-        System.out.println(getClass() +": doWork()");
+
+        System.out.println(getClass() + ": doWork()");
         return false;
     }
 
     public String getName() {
-        System.out.println(getClass() +": in getName()");
+        System.out.println(getClass() + ": in getName()");
         return name;
     }
 
     public void setName(String name) {
-        System.out.println(getClass() +":in setName()");
+        System.out.println(getClass() + ": in setName()");
         this.name = name;
     }
 
     public String getServiceCode() {
-        System.out.println(getClass() +": in getServiceCode()");
+        System.out.println(getClass() + ": in getServiceCode()");
         return serviceCode;
     }
 
     public void setServiceCode(String serviceCode) {
-        System.out.println(getClass() +": in setServiceCode()");
+        System.out.println(getClass() + ": in setServiceCode()");
         this.serviceCode = serviceCode;
     }
 }

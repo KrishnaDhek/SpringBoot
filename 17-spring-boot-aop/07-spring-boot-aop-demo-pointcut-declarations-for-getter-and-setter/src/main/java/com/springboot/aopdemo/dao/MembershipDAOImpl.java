@@ -3,19 +3,20 @@ package com.springboot.aopdemo.dao;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MembershipDAOImpl implements MembershipDAO{
+public class MembershipDAOImpl implements MembershipDAO {
+
     @Override
-   public boolean  addSillyAccount() {
-        System.out.println(getClass() +": Doing my DB work: Adding a Membership account");
+    public boolean addSillyMember() {
+
+        System.out.println(getClass() + ": DOING MY DB WORK: ADDING A MEMBERSHIP ACCOUNT");
+
         return true;
     }
 
-
     @Override
     public void goToSleep() {
-        System.out.println(getClass() +": I'm going to sleep now...");
+
+        System.out.println(getClass() + ": I'm going to sleep now...");
 
     }
-
-
 }
