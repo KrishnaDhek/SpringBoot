@@ -3,12 +3,15 @@ package com.springboot.aopdemo.aspect;
 
 import com.springboot.aopdemo.Account;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * MyDemoLoggingAspect is an aspect class responsible for logging before methods in the DAO package.
@@ -20,6 +23,23 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(2)
 public class MyDemoLoggingAspect {
+
+    // add  the new advice for @AfterRunning on the findAccount method
+
+    @AfterReturning(
+            pointcut = "execution(* com.springboot.aopdemo.dao.AccountDAO.findAccounts(..))",
+            returning = "result")
+    public void afterRunningFindAccountAdvice(JoinPoint theJoinPoint, List<Account> result){
+
+        //print out which method we are advising on
+        String method = theJoinPoint.getSignature().toShortString();
+        System.out.println("\n====>>>> Executing the @AfterRunning on method: " +method);
+
+        //print put the results of the method call
+        System.out.println("\n=====>>> result is: "+result);
+
+
+    }
 
     /**
      * Pointcut declaration for methods in the DAO package excluding getters and setters.
@@ -33,12 +53,10 @@ public class MyDemoLoggingAspect {
         MethodSignature methodSignature = (MethodSignature) theJoinPoint.getSignature();
         System.out.println("method :" +methodSignature);
 
-
-        //display the method arguments
+        //get arguments
         Object[] args = theJoinPoint.getArgs();
 
-        //get arguments
-
+        //loop through arguments
         for (Object tempArg :args){
             System.out.println(tempArg);
 
@@ -52,7 +70,7 @@ public class MyDemoLoggingAspect {
             }
         }
 
-        //loop through arguments
+
 
 
 
