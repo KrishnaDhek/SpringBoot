@@ -30,9 +30,10 @@ public class AopdemoApplication {
 	private void demoTheAfterReturningAdvice(AccountDAO theAccountDAO) {
 
 		//call method to find account
-
 		List<Account> theAccounts = theAccountDAO.findAccounts();
 
+
+		//display the accounts
 		System.out.println("\n\nMain Program: demoTheAfterReturningAdvice");
 		System.out.println("---");
 		System.out.println(theAccounts);
