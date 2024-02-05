@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+/**
+ * Data Transfer Object (DTO) for creating or updating a product.
+ */
 @Data
 @Builder
 @AllArgsConstructor
