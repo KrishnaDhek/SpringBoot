@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+/**
+ * Data Transfer Object (DTO) for representing product information in responses.
+ */
 @Data
 @Builder
 @AllArgsConstructor
