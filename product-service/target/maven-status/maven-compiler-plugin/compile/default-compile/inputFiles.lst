@@ -1,7 +1,0 @@
-/Users/krishna/Learning_Spring_Boot/product-service/src/main/java/com/programming/productservice/repository/ProductRepository.java
-/Users/krishna/Learning_Spring_Boot/product-service/src/main/java/com/programming/productservice/ProductServiceApplication.java
-/Users/krishna/Learning_Spring_Boot/product-service/src/main/java/com/programming/productservice/model/Product.java
-/Users/krishna/Learning_Spring_Boot/product-service/src/main/java/com/programming/productservice/dto/ProductRequest.java
-/Users/krishna/Learning_Spring_Boot/product-service/src/main/java/com/programming/productservice/controller/ProductController.java
-/Users/krishna/Learning_Spring_Boot/product-service/src/main/java/com/programming/productservice/dto/ProductResponse.java
-/Users/krishna/Learning_Spring_Boot/product-service/src/main/java/com/programming/productservice/service/ProductService.java
